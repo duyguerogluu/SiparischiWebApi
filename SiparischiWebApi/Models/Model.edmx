@@ -1,0 +1,850 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SiparischiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="24" />
+          <Property Name="password" Type="varchar" MaxLength="16" />
+          <Property Name="status" Type="varchar" MaxLength="30" />
+          <Property Name="admin_key" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Business">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="24" />
+          <Property Name="password" Type="varchar" MaxLength="16" />
+          <Property Name="business_name" Type="varchar" MaxLength="100" />
+          <Property Name="status" Type="varchar" MaxLength="30" />
+          <Property Name="phone_number" Type="varchar" MaxLength="15" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="city" Type="varchar" MaxLength="30" />
+          <Property Name="district" Type="varchar" MaxLength="30" />
+          <Property Name="neighbourhood" Type="varchar" MaxLength="30" />
+          <Property Name="situation" Type="bit" />
+          <Property Name="starting_date" Type="date" />
+          <Property Name="ending_date" Type="date" />
+          <Property Name="image_url" Type="varchar" MaxLength="100" />
+          <Property Name="location" Type="varchar" MaxLength="100" />
+          <Property Name="business_type_id" Type="int" />
+          <Property Name="business_key" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="BusinessHours">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="opening_hour" Type="time" Precision="7" />
+          <Property Name="closing_hour" Type="time" Precision="7" />
+          <Property Name="business_id" Type="int" />
+          <Property Name="business_work_type_id" Type="int" />
+        </EntityType>
+        <EntityType Name="BusinessRating">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="point_value" Type="int" />
+          <Property Name="business_id" Type="int" />
+          <Property Name="user_id" Type="int" />
+        </EntityType>
+        <EntityType Name="BusinessType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type_name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="BusinessWorkType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="work_type" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Campaign">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="campaign_name" Type="varchar" MaxLength="50" />
+          <Property Name="starting_date" Type="date" />
+          <Property Name="ending_date" Type="date" />
+          <Property Name="business_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="category_name" Type="varchar" MaxLength="30" />
+          <Property Name="image_url" Type="varchar" MaxLength="100" />
+          <Property Name="status" Type="varchar" MaxLength="30" />
+          <Property Name="creation_date" Type="date" />
+          <Property Name="business_id" Type="int" />
+        </EntityType>
+        <EntityType Name="OrderType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="order_type" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="product_name" Type="varchar" MaxLength="30" />
+          <Property Name="image_url" Type="varchar" MaxLength="100" />
+          <Property Name="detail" Type="varchar" MaxLength="200" />
+          <Property Name="price" Type="float" />
+          <Property Name="discounted_price" Type="float" />
+          <Property Name="campaign_status" Type="bit" />
+          <Property Name="creation_date" Type="date" />
+          <Property Name="status" Type="varchar" MaxLength="30" />
+          <Property Name="category_id" Type="int" />
+        </EntityType>
+        <EntityType Name="ProductRating">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="point_value" Type="int" />
+          <Property Name="product_id" Type="int" />
+          <Property Name="user_id" Type="int" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="24" />
+          <Property Name="password" Type="varchar" MaxLength="16" />
+          <Property Name="status" Type="varchar" MaxLength="30" />
+          <Property Name="phone_number" Type="varchar" MaxLength="15" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="address" Type="varchar" MaxLength="100" />
+          <Property Name="creation_date" Type="date" />
+          <Property Name="location" Type="varchar" MaxLength="100" />
+          <Property Name="user_key" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="UserAddress">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="address_name" Type="varchar" MaxLength="50" />
+          <Property Name="address_content" Type="varchar" MaxLength="100" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="selected_address" Type="bit" />
+        </EntityType>
+        <Association Name="FK_Business_BusinessType">
+          <End Role="BusinessType" Type="Self.BusinessType" Multiplicity="0..1" />
+          <End Role="Business" Type="Self.Business" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BusinessType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Business">
+              <PropertyRef Name="business_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BusinessHours_Business">
+          <End Role="BusinessWorkType" Type="Self.BusinessWorkType" Multiplicity="0..1" />
+          <End Role="BusinessHours" Type="Self.BusinessHours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BusinessWorkType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="BusinessHours">
+              <PropertyRef Name="business_work_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BusinessRating_Business">
+          <End Role="Business" Type="Self.Business" Multiplicity="0..1" />
+          <End Role="BusinessRating" Type="Self.BusinessRating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Business">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="BusinessRating">
+              <PropertyRef Name="business_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BusinessRating_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="BusinessRating" Type="Self.BusinessRating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="BusinessRating">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Campaign_Business">
+          <End Role="Business" Type="Self.Business" Multiplicity="0..1" />
+          <End Role="Campaign" Type="Self.Campaign" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Business">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Campaign">
+              <PropertyRef Name="business_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Category_Business">
+          <End Role="Business" Type="Self.Business" Multiplicity="0..1" />
+          <End Role="Category" Type="Self.Category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Business">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Category">
+              <PropertyRef Name="business_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="category_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductRating_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="ProductRating" Type="Self.ProductRating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProductRating">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductRating_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="ProductRating" Type="Self.ProductRating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProductRating">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserAddress_UserAddress">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="UserAddress" Type="Self.UserAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="UserAddress">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SiparischiModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Business" EntityType="Self.Business" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BusinessHours" EntityType="Self.BusinessHours" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BusinessRating" EntityType="Self.BusinessRating" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BusinessType" EntityType="Self.BusinessType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BusinessWorkType" EntityType="Self.BusinessWorkType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Campaign" EntityType="Self.Campaign" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderType" EntityType="Self.OrderType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductRating" EntityType="Self.ProductRating" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserAddress" EntityType="Self.UserAddress" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Business_BusinessType" Association="Self.FK_Business_BusinessType">
+            <End Role="BusinessType" EntitySet="BusinessType" />
+            <End Role="Business" EntitySet="Business" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BusinessHours_Business" Association="Self.FK_BusinessHours_Business">
+            <End Role="BusinessWorkType" EntitySet="BusinessWorkType" />
+            <End Role="BusinessHours" EntitySet="BusinessHours" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BusinessRating_Business" Association="Self.FK_BusinessRating_Business">
+            <End Role="Business" EntitySet="Business" />
+            <End Role="BusinessRating" EntitySet="BusinessRating" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BusinessRating_User" Association="Self.FK_BusinessRating_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="BusinessRating" EntitySet="BusinessRating" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Campaign_Business" Association="Self.FK_Campaign_Business">
+            <End Role="Business" EntitySet="Business" />
+            <End Role="Campaign" EntitySet="Campaign" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Category_Business" Association="Self.FK_Category_Business">
+            <End Role="Business" EntitySet="Business" />
+            <End Role="Category" EntitySet="Category" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Category" Association="Self.FK_Product_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductRating_Product" Association="Self.FK_ProductRating_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductRating" EntitySet="ProductRating" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductRating_User" Association="Self.FK_ProductRating_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="ProductRating" EntitySet="ProductRating" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserAddress_UserAddress" Association="Self.FK_UserAddress_UserAddress">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserAddress" EntitySet="UserAddress" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SiparischiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="24" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="admin_key" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Business">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="24" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="business_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="phone_number" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="city" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="district" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="neighbourhood" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="situation" Type="Boolean" />
+          <Property Name="starting_date" Type="DateTime" Precision="0" />
+          <Property Name="ending_date" Type="DateTime" Precision="0" />
+          <Property Name="image_url" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="location" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="business_type_id" Type="Int32" />
+          <Property Name="business_key" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BusinessType" Relationship="Self.FK_Business_BusinessType" FromRole="Business" ToRole="BusinessType" />
+          <NavigationProperty Name="BusinessRating" Relationship="Self.FK_BusinessRating_Business" FromRole="Business" ToRole="BusinessRating" />
+          <NavigationProperty Name="Campaign" Relationship="Self.FK_Campaign_Business" FromRole="Business" ToRole="Campaign" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_Category_Business" FromRole="Business" ToRole="Category" />
+        </EntityType>
+        <EntityType Name="BusinessHours">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="opening_hour" Type="Time" Precision="7" />
+          <Property Name="closing_hour" Type="Time" Precision="7" />
+          <Property Name="business_id" Type="Int32" />
+          <Property Name="business_work_type_id" Type="Int32" />
+          <NavigationProperty Name="BusinessWorkType" Relationship="Self.FK_BusinessHours_Business" FromRole="BusinessHours" ToRole="BusinessWorkType" />
+        </EntityType>
+        <EntityType Name="BusinessRating">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="point_value" Type="Int32" />
+          <Property Name="business_id" Type="Int32" />
+          <Property Name="user_id" Type="Int32" />
+          <NavigationProperty Name="Business" Relationship="Self.FK_BusinessRating_Business" FromRole="BusinessRating" ToRole="Business" />
+          <NavigationProperty Name="User" Relationship="Self.FK_BusinessRating_User" FromRole="BusinessRating" ToRole="User" />
+        </EntityType>
+        <EntityType Name="BusinessType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Business" Relationship="Self.FK_Business_BusinessType" FromRole="BusinessType" ToRole="Business" />
+        </EntityType>
+        <EntityType Name="BusinessWorkType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="work_type" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BusinessHours" Relationship="Self.FK_BusinessHours_Business" FromRole="BusinessWorkType" ToRole="BusinessHours" />
+        </EntityType>
+        <EntityType Name="Campaign">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="campaign_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="starting_date" Type="DateTime" Precision="0" />
+          <Property Name="ending_date" Type="DateTime" Precision="0" />
+          <Property Name="business_id" Type="Int32" />
+          <NavigationProperty Name="Business" Relationship="Self.FK_Campaign_Business" FromRole="Campaign" ToRole="Business" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="category_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="image_url" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="creation_date" Type="DateTime" Precision="0" />
+          <Property Name="business_id" Type="Int32" />
+          <NavigationProperty Name="Business" Relationship="Self.FK_Category_Business" FromRole="Category" ToRole="Business" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_Product_Category" FromRole="Category" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="OrderType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="order_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="product_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="image_url" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="detail" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="price" Type="Double" />
+          <Property Name="discounted_price" Type="Double" />
+          <Property Name="campaign_status" Type="Boolean" />
+          <Property Name="creation_date" Type="DateTime" Precision="0" />
+          <Property Name="status" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="category_id" Type="Int32" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_Product_Category" FromRole="Product" ToRole="Category" />
+          <NavigationProperty Name="ProductRating" Relationship="Self.FK_ProductRating_Product" FromRole="Product" ToRole="ProductRating" />
+        </EntityType>
+        <EntityType Name="ProductRating">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="point_value" Type="Int32" />
+          <Property Name="product_id" Type="Int32" />
+          <Property Name="user_id" Type="Int32" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_ProductRating_Product" FromRole="ProductRating" ToRole="Product" />
+          <NavigationProperty Name="User" Relationship="Self.FK_ProductRating_User" FromRole="ProductRating" ToRole="User" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="24" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="phone_number" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="creation_date" Type="DateTime" Precision="0" />
+          <Property Name="location" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="user_key" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BusinessRating" Relationship="Self.FK_BusinessRating_User" FromRole="User" ToRole="BusinessRating" />
+          <NavigationProperty Name="ProductRating" Relationship="Self.FK_ProductRating_User" FromRole="User" ToRole="ProductRating" />
+          <NavigationProperty Name="UserAddress" Relationship="Self.FK_UserAddress_UserAddress" FromRole="User" ToRole="UserAddress" />
+        </EntityType>
+        <EntityType Name="UserAddress">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="address_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="address_content" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="user_id" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="Self.FK_UserAddress_UserAddress" FromRole="UserAddress" ToRole="User" />
+          <Property Name="selected_address" Type="Boolean" />
+        </EntityType>
+        <Association Name="FK_Business_BusinessType">
+          <End Role="BusinessType" Type="Self.BusinessType" Multiplicity="0..1" />
+          <End Role="Business" Type="Self.Business" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BusinessType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Business">
+              <PropertyRef Name="business_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BusinessRating_Business">
+          <End Role="Business" Type="Self.Business" Multiplicity="0..1" />
+          <End Role="BusinessRating" Type="Self.BusinessRating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Business">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="BusinessRating">
+              <PropertyRef Name="business_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Campaign_Business">
+          <End Role="Business" Type="Self.Business" Multiplicity="0..1" />
+          <End Role="Campaign" Type="Self.Campaign" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Business">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Campaign">
+              <PropertyRef Name="business_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Category_Business">
+          <End Role="Business" Type="Self.Business" Multiplicity="0..1" />
+          <End Role="Category" Type="Self.Category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Business">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Category">
+              <PropertyRef Name="business_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BusinessHours_Business">
+          <End Role="BusinessWorkType" Type="Self.BusinessWorkType" Multiplicity="0..1" />
+          <End Role="BusinessHours" Type="Self.BusinessHours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BusinessWorkType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="BusinessHours">
+              <PropertyRef Name="business_work_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BusinessRating_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="BusinessRating" Type="Self.BusinessRating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="BusinessRating">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="category_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductRating_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="ProductRating" Type="Self.ProductRating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProductRating">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductRating_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="ProductRating" Type="Self.ProductRating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProductRating">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserAddress_UserAddress">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="UserAddress" Type="Self.UserAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="UserAddress">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SiparischiEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admin" EntityType="Self.Admin" />
+          <EntitySet Name="Business" EntityType="Self.Business" />
+          <EntitySet Name="BusinessHours" EntityType="Self.BusinessHours" />
+          <EntitySet Name="BusinessRating" EntityType="Self.BusinessRating" />
+          <EntitySet Name="BusinessType" EntityType="Self.BusinessType" />
+          <EntitySet Name="BusinessWorkType" EntityType="Self.BusinessWorkType" />
+          <EntitySet Name="Campaign" EntityType="Self.Campaign" />
+          <EntitySet Name="Category" EntityType="Self.Category" />
+          <EntitySet Name="OrderType" EntityType="Self.OrderType" />
+          <EntitySet Name="Product" EntityType="Self.Product" />
+          <EntitySet Name="ProductRating" EntityType="Self.ProductRating" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <EntitySet Name="UserAddress" EntityType="Self.UserAddress" />
+          <AssociationSet Name="FK_Business_BusinessType" Association="Self.FK_Business_BusinessType">
+            <End Role="BusinessType" EntitySet="BusinessType" />
+            <End Role="Business" EntitySet="Business" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BusinessRating_Business" Association="Self.FK_BusinessRating_Business">
+            <End Role="Business" EntitySet="Business" />
+            <End Role="BusinessRating" EntitySet="BusinessRating" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Campaign_Business" Association="Self.FK_Campaign_Business">
+            <End Role="Business" EntitySet="Business" />
+            <End Role="Campaign" EntitySet="Campaign" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Category_Business" Association="Self.FK_Category_Business">
+            <End Role="Business" EntitySet="Business" />
+            <End Role="Category" EntitySet="Category" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BusinessHours_Business" Association="Self.FK_BusinessHours_Business">
+            <End Role="BusinessWorkType" EntitySet="BusinessWorkType" />
+            <End Role="BusinessHours" EntitySet="BusinessHours" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BusinessRating_User" Association="Self.FK_BusinessRating_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="BusinessRating" EntitySet="BusinessRating" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Category" Association="Self.FK_Product_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductRating_Product" Association="Self.FK_ProductRating_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductRating" EntitySet="ProductRating" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductRating_User" Association="Self.FK_ProductRating_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="ProductRating" EntitySet="ProductRating" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserAddress_UserAddress" Association="Self.FK_UserAddress_UserAddress">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserAddress" EntitySet="UserAddress" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SiparischiModelStoreContainer" CdmEntityContainer="SiparischiEntities">
+          <EntitySetMapping Name="Admin">
+            <EntityTypeMapping TypeName="SiparischiModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="admin_key" ColumnName="admin_key" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Business">
+            <EntityTypeMapping TypeName="SiparischiModel.Business">
+              <MappingFragment StoreEntitySet="Business">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="business_name" ColumnName="business_name" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="district" ColumnName="district" />
+                <ScalarProperty Name="neighbourhood" ColumnName="neighbourhood" />
+                <ScalarProperty Name="situation" ColumnName="situation" />
+                <ScalarProperty Name="starting_date" ColumnName="starting_date" />
+                <ScalarProperty Name="ending_date" ColumnName="ending_date" />
+                <ScalarProperty Name="image_url" ColumnName="image_url" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="business_type_id" ColumnName="business_type_id" />
+                <ScalarProperty Name="business_key" ColumnName="business_key" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BusinessHours">
+            <EntityTypeMapping TypeName="SiparischiModel.BusinessHours">
+              <MappingFragment StoreEntitySet="BusinessHours">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="opening_hour" ColumnName="opening_hour" />
+                <ScalarProperty Name="closing_hour" ColumnName="closing_hour" />
+                <ScalarProperty Name="business_id" ColumnName="business_id" />
+                <ScalarProperty Name="business_work_type_id" ColumnName="business_work_type_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BusinessRating">
+            <EntityTypeMapping TypeName="SiparischiModel.BusinessRating">
+              <MappingFragment StoreEntitySet="BusinessRating">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="point_value" ColumnName="point_value" />
+                <ScalarProperty Name="business_id" ColumnName="business_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BusinessType">
+            <EntityTypeMapping TypeName="SiparischiModel.BusinessType">
+              <MappingFragment StoreEntitySet="BusinessType">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="type_name" ColumnName="type_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BusinessWorkType">
+            <EntityTypeMapping TypeName="SiparischiModel.BusinessWorkType">
+              <MappingFragment StoreEntitySet="BusinessWorkType">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="work_type" ColumnName="work_type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Campaign">
+            <EntityTypeMapping TypeName="SiparischiModel.Campaign">
+              <MappingFragment StoreEntitySet="Campaign">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="campaign_name" ColumnName="campaign_name" />
+                <ScalarProperty Name="starting_date" ColumnName="starting_date" />
+                <ScalarProperty Name="ending_date" ColumnName="ending_date" />
+                <ScalarProperty Name="business_id" ColumnName="business_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Category">
+            <EntityTypeMapping TypeName="SiparischiModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="category_name" ColumnName="category_name" />
+                <ScalarProperty Name="image_url" ColumnName="image_url" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+                <ScalarProperty Name="business_id" ColumnName="business_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderType">
+            <EntityTypeMapping TypeName="SiparischiModel.OrderType">
+              <MappingFragment StoreEntitySet="OrderType">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="order_type" ColumnName="order_type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="SiparischiModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="product_name" ColumnName="product_name" />
+                <ScalarProperty Name="image_url" ColumnName="image_url" />
+                <ScalarProperty Name="detail" ColumnName="detail" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="discounted_price" ColumnName="discounted_price" />
+                <ScalarProperty Name="campaign_status" ColumnName="campaign_status" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="category_id" ColumnName="category_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductRating">
+            <EntityTypeMapping TypeName="SiparischiModel.ProductRating">
+              <MappingFragment StoreEntitySet="ProductRating">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="point_value" ColumnName="point_value" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="SiparischiModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="user_key" ColumnName="user_key" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserAddress">
+            <EntityTypeMapping TypeName="SiparischiModel.UserAddress">
+              <MappingFragment StoreEntitySet="UserAddress">
+                <ScalarProperty Name="selected_address" ColumnName="selected_address" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="address_name" ColumnName="address_name" />
+                <ScalarProperty Name="address_content" ColumnName="address_content" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

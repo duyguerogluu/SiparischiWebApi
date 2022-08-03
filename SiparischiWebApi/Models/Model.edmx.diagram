@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3255e020f3a24677822ff6425231cdcf" Name="Diagram1" ZoomLevel="97">
+        <EntityTypeShape EntityType="SiparischiModel.Admin" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiparischiModel.Business" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiparischiModel.BusinessHours" Width="1.5" PointX="10" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiparischiModel.BusinessRating" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiparischiModel.BusinessType" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiparischiModel.BusinessWorkType" Width="1.5" PointX="7.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiparischiModel.Campaign" Width="1.5" PointX="5.25" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiparischiModel.Category" Width="1.5" PointX="5.25" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiparischiModel.OrderType" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiparischiModel.Product" Width="1.5" PointX="7.5" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiparischiModel.ProductRating" Width="1.5" PointX="9.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiparischiModel.User" Width="1.5" PointX="3" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiparischiModel.UserAddress" Width="1.5" PointX="5.25" PointY="12.875" IsExpanded="true" />
+        <AssociationConnector Association="SiparischiModel.FK_Business_BusinessType" ManuallyRouted="false" />
+        <AssociationConnector Association="SiparischiModel.FK_BusinessRating_Business" ManuallyRouted="false" />
+        <AssociationConnector Association="SiparischiModel.FK_Campaign_Business" ManuallyRouted="false" />
+        <AssociationConnector Association="SiparischiModel.FK_Category_Business" ManuallyRouted="false" />
+        <AssociationConnector Association="SiparischiModel.FK_BusinessHours_Business" ManuallyRouted="false" />
+        <AssociationConnector Association="SiparischiModel.FK_BusinessRating_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SiparischiModel.FK_Product_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="SiparischiModel.FK_ProductRating_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="SiparischiModel.FK_ProductRating_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SiparischiModel.FK_UserAddress_UserAddress" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
